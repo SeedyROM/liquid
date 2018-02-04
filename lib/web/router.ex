@@ -3,14 +3,13 @@ defmodule Liquid.Router do
 
     if Mix.env == :dev do
         use Plug.Debugger
+        plug Plug.Logger
     end
     
-    plug Plug.Logger
+    plug Liquid.StaticFiles
+
     plug :match
     plug :dispatch
-
-    # Serve static files
-    plug Plug.Static, from: "priv/static"
 
     get "/test" do
         send_resp(conn, 200, "POUR ONE OUT")
@@ -18,5 +17,9 @@ defmodule Liquid.Router do
 
     get "/user/:username" do
         send_resp(conn, 200, "You are #{username} and you are a very nice person/thing.")
+    end
+
+    match _ do
+        send_resp(conn, 404, "Page not found!")
     end
 end
