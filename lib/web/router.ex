@@ -9,6 +9,9 @@ defmodule Liquid.Router do
     plug :match
     plug :dispatch
 
+    # Serve static files
+    plug Plug.Static, from: "priv/static"
+
     get "/test" do
         send_resp(conn, 200, "POUR ONE OUT")
     end
