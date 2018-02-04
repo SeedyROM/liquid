@@ -14,14 +14,14 @@ defmodule Liquid.Mixfile do
 	# Run "mix help compile.app" to learn about applications.
 	def application do
 		applications = [:logger, :cowboy, :plug, :poison]
-		
+
 		dev_applications = case Mix.env == :dev do
-			true -> [:mimimix],
+			true -> [:mimimix]
 			false -> []
 		end
 
 		[
-			extra_applications: [applications ++ dev_applications],
+			extra_applications: applications ++ dev_applications,
 			mod: {Liquid.Application, []}
 		]
 	end

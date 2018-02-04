@@ -14,6 +14,6 @@ defmodule Liquid.Router do
     end
 
     get "/user/:username" do
-        send_resp(conn, 200, "You are #{username}")
+        send_resp(conn, 200, "You are #{username} and you are a very nice person/thing.")
     end
 end
